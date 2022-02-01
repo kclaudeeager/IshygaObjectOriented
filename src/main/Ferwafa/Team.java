@@ -11,13 +11,37 @@ public class Team {
     private byte division;
     private String name;
     private boolean isWomenTeam;
-    
+    private ArrayList<Player> lineUp;
+
+    public Team(ArrayList<Player> players, String headCoachName, Player teamCaptain, byte division, String name,
+            boolean isWomenTeam) {
+        this.players = players;
+        this.headCoachName = headCoachName;
+        this.teamCaptain = teamCaptain;
+        this.division = division;
+        this.name = name;
+        this.isWomenTeam = isWomenTeam;
+    }
+
+    public Team(byte division, String name, boolean isWomenTeam) {
+        this.division = division;
+        this.name = name;
+        this.isWomenTeam = isWomenTeam;
+    }
 
     /**
      * @return ArrayList<Player> return the players
      */
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public ArrayList<Player> getLineUp() {
+        return lineUp;
+    }
+
+    public void setLineUp(ArrayList<Player> lineUp) {
+        this.lineUp = lineUp;
     }
 
     /**
