@@ -7,11 +7,21 @@ public class BrdLoanManagement{
     private ArrayList<Student> studentsRequestLoan;
     private long budgetSum;
     private static long minimumCaptal=2000000;
- 
+    private static long payedMoney=0;
     public BrdLoanManagement(ArrayList<Student> studentsRequestLoan, long budgetSum) {
         this.studentsRequestLoan = studentsRequestLoan;
         this.budgetSum = budgetSum;
+  
     }
+
+    public static long getPayedMoney() {
+        return payedMoney;
+    }
+
+    public static void setPayedMoney(long payedMoney) {
+        BrdLoanManagement.payedMoney = payedMoney;
+    }
+
     public BrdLoanManagement(ArrayList<StudentWithLoan> studentsWithLoan, ArrayList<Student> studentsRequestLoan,
             long budgetSum) {
         this.studentsWithLoan = studentsWithLoan;
@@ -21,9 +31,9 @@ public class BrdLoanManagement{
     public void provideLoan(Student student,long moneyToPay){
         if(budgetSum>minimumCaptal)
         if(studentsRequestLoan.contains(student)){
+            
             studentsWithLoan.add(new StudentWithLoan(moneyToPay,student));
-            studentsRequestLoan.remove(student);
-            budgetSum-=new StudentWithLoan(moneyToPay,student).getMoneyToPay();
+            budgetSum-=moneyToPay;
             System.out.println("The student "+student+" is given a loan ");
         }
         else{
@@ -41,7 +51,7 @@ public class BrdLoanManagement{
           if(studentWithLoan.getDateOfLoanGiving().equals(dateOfLoanProvision)){
          
             studentWithLoan.payLoan(amount);
-            
+            payedMoney+=amount;
           }
       }
        
@@ -69,10 +79,12 @@ public class BrdLoanManagement{
     public void setStudentsRequestLoan(ArrayList<Student> studentsRequestLoan) {
         this.studentsRequestLoan = studentsRequestLoan;
     }
+
     @Override
     public String toString() {
         return "BrdLoanManagement [budgetSum=" + budgetSum + ", studentsRequestLoan=" + studentsRequestLoan
                 + ", studentsWithLoan=" + studentsWithLoan + "]";
     }
+ 
 
 }
