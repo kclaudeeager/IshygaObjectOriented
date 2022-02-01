@@ -1,14 +1,10 @@
 package main;
 
-import main.AttendenceSytem.Student;
-import main.BRD.StudentWithLoan;
-
+import main.AttendenceSytem.AttendanceManagement;
 public class Testing {
     public static void main(String args[]){
-        Student student = new Student();
-        StudentWithLoan studentWithLoan = (StudentWithLoan) student;
-
-        studentWithLoan.print();
+        new AttendanceManagement();
+        AttendanceManagement.main(args);
 
     }
 }

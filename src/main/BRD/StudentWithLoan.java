@@ -1,4 +1,5 @@
 package main.BRD;
+import java.util.ArrayList;
 import java.util.Date;
 import main.AttendenceSytem.CalenderForStudents;
 import main.AttendenceSytem.Student;
@@ -9,13 +10,42 @@ public class StudentWithLoan extends Student{
     private long payedMoneySoFar;
     private boolean doesHaveJob;
     private PersonAcount personAcount;
-  public StudentWithLoan(long moneyToPay, Date dateOfLoanGiving, long payedMoneySoFar, boolean doesHaveJob,
+    private Student student;
+  public  static ArrayList<StudentWithLoan> studentsWithLoan=new ArrayList<>();
+  public StudentWithLoan(long moneyToPay) {
+    this.moneyToPay = moneyToPay;
+}
+public StudentWithLoan(Student student) {
+    this.student = student;
+}
+public StudentWithLoan(String universityName, String collageName, String schoolName, String departmentName,
+        Date dateOfStartingToStudy, int yearsToStudy, CalenderForStudents calenderForStudents, long moneyToPay,
+        Date dateOfLoanGiving, PersonAcount personAcount) {
+    super(universityName, collageName, schoolName, departmentName, dateOfStartingToStudy, yearsToStudy,
+            calenderForStudents);
+    this.moneyToPay = moneyToPay;
+    this.dateOfLoanGiving = dateOfLoanGiving;
+    this.personAcount = personAcount;
+}
+public Student getStudent() {
+    return student;
+}
+public void setStudent(Student student) {
+    this.student = student;
+}
+public StudentWithLoan(long moneyToPay, Date dateOfLoanGiving, long payedMoneySoFar, boolean doesHaveJob,
             PersonAcount personAcount) {
         this.moneyToPay = moneyToPay;
         this.dateOfLoanGiving = dateOfLoanGiving;
         this.payedMoneySoFar = payedMoneySoFar;
         this.doesHaveJob = doesHaveJob;
         this.personAcount = personAcount;
+    }
+    public StudentWithLoan(long moneyToPay, Date dateOfLoanGiving, PersonAcount personAcount,Student student) {
+          this.moneyToPay = moneyToPay;
+          this.dateOfLoanGiving = dateOfLoanGiving;
+          this.personAcount = personAcount;
+          this.student=student;
     }
 
 public StudentWithLoan(String universityName, String collageName, String schoolName, String departmentName,
@@ -30,7 +60,15 @@ public StudentWithLoan(String universityName, String collageName, String schoolN
         this.personAcount = personAcount;
     }
 
+
+
+public StudentWithLoan(long moneyToPay,Student student) {
+    this.moneyToPay=moneyToPay;
+    this.student=student;
+
+}
 public void payLoan(long money){
+    this.setPersonAcount(personAcount);
       if(!doesHaveJob){
           System.out.println("This person has not yet got a job!");
           return;
@@ -114,6 +152,18 @@ public void payLoan(long money){
      */
     public void setDoesHaveJob(boolean doesHaveJob) {
         this.doesHaveJob = doesHaveJob;
+    }
+    @Override
+    public String toString() {
+        return "StudentWithLoan [dateOfLoanGiving=" + dateOfLoanGiving + ", doesHaveJob=" + doesHaveJob
+                + ", moneyToPay=" + moneyToPay + ", payedMoneySoFar=" + payedMoneySoFar + ", personAcount="
+                + personAcount + "]";
+    }
+    public PersonAcount getPersonAcount() {
+        return personAcount;
+    }
+    public void setPersonAcount(PersonAcount personAcount) {
+        this.personAcount = personAcount;
     }
 
 

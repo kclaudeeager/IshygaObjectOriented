@@ -39,5 +39,9 @@ public class PersonAcount extends Citizen{
     public void setAmountOnBank(long amountOnBank) {
         this.amountOnBank = amountOnBank;
     }
+    @Override
+    public String toString() {
+        return "PersonAcount [accountNumber=" + accountNumber + ", amountOnBank=" + amountOnBank + "]";
+    }
 
 }
